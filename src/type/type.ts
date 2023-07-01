@@ -6,3 +6,12 @@ export interface PizzaProps {
   imageUrl: string;
   ingredients: string[];
 }
+export interface LoaderParams {
+  orderId?: string | number | undefined;
+}
+export interface ActionParams {
+  formData: () => Promise<any>;
+}
+export interface OrderError {
+  phone?: string;
+}
