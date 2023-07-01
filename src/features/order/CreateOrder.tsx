@@ -32,13 +32,16 @@ const fakeCart = [
     totalPrice: 15,
   },
 ];
+interface ActionError {
+  phone: string;
+}
 
 function CreateOrder() {
   // const [withPriority, setWithPriority] = useState(false);
   const cart = fakeCart;
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const formErrors = useActionData();
+  const formErrors = useActionData() as ActionError;
   return (
     <div className="px-4 py-6">
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
@@ -89,7 +92,7 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <Button disabled={isSubmitting}>
+          <Button type="primary" disabled={isSubmitting}>
             {isSubmitting ? "Placing Order" : "Order Now"}
           </Button>
         </div>

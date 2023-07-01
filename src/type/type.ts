@@ -15,3 +15,25 @@ export interface ActionParams {
 export interface OrderError {
   phone?: string;
 }
+export interface CartItem {
+  key: number;
+  pizzaId: number;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+  id: number;
+}
+export interface Order {
+  id: string;
+  status: string;
+  priority: string;
+  priorityPrice: number;
+  orderPrice: number;
+  estimatedDelivery: string;
+  cart: CartItem[];
+}
+////////////////// REDUX STATE
+export interface Userstate {
+  username: string;
+}
