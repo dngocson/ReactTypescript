@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Userstate } from "../../type/type";
+import { RootState } from "../../store/store";
 // import { action } from "../order/CreateOrder";
 
 /*
@@ -39,3 +40,5 @@ const userSlice = createSlice({
 });
 export const { updateName } = userSlice.actions;
 export default userSlice.reducer;
+
+export const getUsername = (state: RootState) => state.user.username;

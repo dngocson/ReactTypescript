@@ -1,42 +1,20 @@
 import LinkButton from "../../ui/LinkButon";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
-import { RootState } from "../../store.js/store";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-const fakeCart = [
-  {
-    id: 1,
-    key: 1,
-    pizzaId: 12,
-    name: "Mediterranean",
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32,
-  },
-  {
-    id: 2,
-    key: 2,
-    pizzaId: 6,
-    name: "Vegetale",
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13,
-  },
-  {
-    id: 3,
-    key: 3,
-    pizzaId: 11,
-    name: "Spinach and Mushroom",
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15,
-  },
-];
+import { clearCart, getCart } from "./cartSlice";
+import { getUsername } from "../users/userSlice";
+import EmptyCart from "./EmptyCart";
 
 function Cart() {
-  const username = useSelector((state: RootState) => state.user.username);
-  const cart = fakeCart;
-
+  const username = useSelector(getUsername);
+  const cart = useSelector(getCart);
+  if (!cart.length) return <EmptyCart />;
+  const dispath = useDispatch();
+  const clearCartHandler = () => {
+    dispath(clearCart());
+  };
   return (
     <div className="px-4 py-3">
       <LinkButton to="/menu">&larr; Back to menu</LinkButton>
@@ -53,7 +31,7 @@ function Cart() {
         <Button type="primary" to="/order/new">
           Order pizzas
         </Button>
-        <Button type="secondary" to="/order/new">
+        <Button onClick={clearCartHandler} type="secondary">
           Clear cart
         </Button>
       </div>

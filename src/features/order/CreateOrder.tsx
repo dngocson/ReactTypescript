@@ -1,12 +1,11 @@
-import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { ActionParams, OrderError } from "../../type/type";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
-import { RootState } from "../../store.js/store";
+import { RootState } from "../../store/store";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 // https://uibakery.io/regex-library/phone-number
-const isValidPhone = (str) =>
+const isValidPhone = (str: string) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
     str
   );

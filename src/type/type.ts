@@ -16,13 +16,13 @@ export interface OrderError {
   phone?: string;
 }
 export interface CartItem {
-  key: number;
+  key?: number;
   pizzaId: number;
   name: string;
   quantity: number;
   unitPrice: number;
   totalPrice: number;
-  id: number;
+  id?: number;
 }
 export interface Order {
   id: string;
@@ -36,4 +36,7 @@ export interface Order {
 ////////////////// REDUX STATE
 export interface Userstate {
   username: string;
+}
+export interface Cartstate {
+  cart: CartItem[];
 }
