@@ -2,7 +2,7 @@
 
 import { useFetcher, useLoaderData } from "react-router-dom";
 import { getOrder } from "../../services/apiRestaurant";
-import { LoaderParams, Order } from "../../type/type";
+import { LoaderParams, Order, el } from "../../type/type";
 
 import {
   calcMinutesLeft,
@@ -69,8 +69,9 @@ function Order() {
             item={item}
             key={item.pizzaId}
             ingredients={
-              fetcher?.data?.find((el) => el.id === item.pizzaId)
-                ?.ingredients ?? []
+              fetcher?.data?.find((el: el) => {
+                return el.id === item.pizzaId;
+              })?.ingredients ?? []
             }
             isLoadingIngredients={fetcher.state === "loading"}
           />

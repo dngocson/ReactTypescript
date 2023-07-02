@@ -1,5 +1,5 @@
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
-import { ActionParams, OrderError } from "../../type/type";
+import { ActionParams, OrderError, dataType } from "../../type/type";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import { RootState } from "../../store/store";
@@ -41,7 +41,7 @@ function CreateOrder() {
   const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
   const totalPrice = totalCartPrice + priorityPrice;
 
-  const fetchAddressHandler = (e) => {
+  const fetchAddressHandler = (e: any) => {
     e.preventDefault();
     dispatch(fetchAddress());
   };
@@ -110,7 +110,7 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            value={withPriority}
+            value={withPriority ? "true" : "false"}
             onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
@@ -143,9 +143,13 @@ function CreateOrder() {
 export async function action({ request }: { request: ActionParams }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const order = {
-    ...data,
+
+  const order: dataType = {
+    address: data.address,
     cart: JSON.parse(data.cart),
+    customer: data.customer,
+    phone: data.phone,
+    position: data.position,
     priority: data.priority === "true",
   };
   const errors: OrderError = {};

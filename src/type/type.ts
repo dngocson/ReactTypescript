@@ -62,3 +62,19 @@ export interface GeolocationPosition {
   coords: GeolocationCoordinates;
   timestamp: number;
 }
+export interface dataType {
+  address: string;
+  cart?: CartItem[];
+  customer: string;
+  phone: string;
+  position: string;
+  priority?: boolean;
+}
+export interface el {
+  id: number;
+  imageUrl: string;
+  ingredients: string[];
+  name: string;
+  soldOut: boolean;
+  unitPrice: number;
+}

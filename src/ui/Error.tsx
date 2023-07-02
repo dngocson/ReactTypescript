@@ -1,4 +1,4 @@
-import { useNavigate, useRouteError } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import LinkButton from "./LinkButon";
 
 interface RouteError {
@@ -10,9 +10,8 @@ function isError(error: unknown): error is RouteError {
 }
 
 function Error() {
-  const navigate = useNavigate();
   const error = useRouteError();
-  console.error(error);
+
   return (
     <div>
       <h1>Something went wrong 😢</h1>

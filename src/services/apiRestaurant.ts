@@ -1,3 +1,5 @@
+import { dataType } from "../type/type";
+
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
 export async function getMenu() {
@@ -18,7 +20,7 @@ export async function getOrder(id: number | string | undefined) {
   return data;
 }
 
-export async function createOrder(newOrder) {
+export async function createOrder(newOrder: dataType) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -36,7 +38,11 @@ export async function createOrder(newOrder) {
   }
 }
 
-export async function updateOrder(id, updateObj) {
+export async function updateOrder(
+  id: string,
+  updateObj: { priority: boolean }
+) {
+  console.log("updateObj", updateObj);
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
