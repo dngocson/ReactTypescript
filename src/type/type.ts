@@ -34,9 +34,31 @@ export interface Order {
   cart: CartItem[];
 }
 ////////////////// REDUX STATE
+interface position {
+  latitude: number;
+  longitude: number;
+}
 export interface Userstate {
   username: string;
+  status: "idle" | "loading" | "error";
+  position: position;
+  address: string;
+  error: string;
 }
 export interface Cartstate {
   cart: CartItem[];
+}
+interface GeolocationCoordinates {
+  latitude: number;
+  longitude: number;
+  altitude: number | null;
+  accuracy: number;
+  altitudeAccuracy: number | null;
+  heading: number | null;
+  speed: number | null;
+}
+
+export interface GeolocationPosition {
+  coords: GeolocationCoordinates;
+  timestamp: number;
 }
